@@ -1,4 +1,13 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+
+
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { AUTH_TOKEN_KEY, api } from "../lib/api";
 
@@ -34,16 +43,16 @@ export function AuthProvider({ children }) {
     }
   }, [meQuery.error, queryClient]);
 
-  const login = (nextToken) => {
+  const login = useCallback((nextToken) => {
     window.localStorage.setItem(AUTH_TOKEN_KEY, nextToken);
     setToken(nextToken);
-  };
-
-  const logout = () => {
+  }, []);
+  
+  const logout = useCallback(() => {
     window.localStorage.removeItem(AUTH_TOKEN_KEY);
     setToken("");
     queryClient.clear();
-  };
+  }, [queryClient]);
 
   const value = useMemo(
     () => ({

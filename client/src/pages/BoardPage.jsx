@@ -26,7 +26,7 @@ export default function BoardPage() {
       (await api.get("/tasks", { params: { boardId: id, sortBy: "createdAt", order: "asc" } })).data,
   });
 
-  const tasks = tasksQ.data || [];
+  const tasks = useMemo(() => tasksQ.data || [], [tasksQ.data]);
   const filteredTasks = useMemo(() => filterTasks(tasks, filters), [tasks, filters]);
   const groupedTasks = useMemo(() => groupTasksByStatus(filteredTasks), [filteredTasks]);
 
