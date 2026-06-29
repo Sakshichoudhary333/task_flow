@@ -22,20 +22,16 @@
     "recharts": "^2.15.4",
     "web-vitals": "^2.1.4"
   },
-
-
   "scripts": {
-  "start": "react-scripts start",
-  "build": "CI=false react-scripts build"
-},
-
-
+    "start": "react-scripts start",
+    "build": "CI=false react-scripts build"
+  },
   "eslintConfig": {
-  "extends": [
-    "react-app",
-    "react-app/jest"
-  ]
-},
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
   "browserslist": {
     "production": [
       ">0.2%",
